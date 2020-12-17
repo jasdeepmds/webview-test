@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
             javaScriptEnabled: true,
             supportZoom: false,
             // debuggingEnabled: true,
-            clearCache: true,
+            // clearCache: true,
           ),
         ),
         onWebViewCreated: (InAppWebViewController _controller) async {
