@@ -30,22 +30,25 @@ class _WebviewDisplayState extends State<WebviewDisplay> {
                 });
                 _inAppWebViewController.loadUrl(url: _selectedUrl);
               }),
-          IconButton(
-              icon: Icon(Icons.clear),
-              onPressed: () {
-                _inAppWebViewController.stopLoading().then((value) {
-                  setState(() {
-                    _isLoading = false;
-                  });
-                });
-              }),
+          // IconButton(
+          //     icon: Icon(Icons.clear),
+          //     onPressed: () {
+          //       _inAppWebViewController.stopLoading().then((value) {
+          //         setState(() {
+          //           _isLoading = false;
+          //         });
+          //       });
+          //     }),
           TextButton(
               onPressed: () {
                 _inAppWebViewController.clearCache();
               },
               child: Text(
                 "CLEAR",
-                style: TextStyle(fontSize: 12),
+                style: TextStyle(
+                  fontSize: 12,
+                  color: Colors.white,
+                ),
               ))
         ],
       ),
