@@ -10,6 +10,7 @@ class EnvironmentSelector extends StatefulWidget {
 
 class _EnvironmentSelectorState extends State<EnvironmentSelector> {
   List<String> _urls = [
+    "https://pro.dev-v2.mrbuilder.io/",
     "https://pro.qa-v2.mrbuilder.io/",
     "https://pro.getdone.com/",
   ];
