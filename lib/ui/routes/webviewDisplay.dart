@@ -11,7 +11,7 @@ class WebviewDisplay extends StatefulWidget {
 class _WebviewDisplayState extends State<WebviewDisplay> {
   InAppWebViewController _inAppWebViewController;
   String _selectedUrl;
-  bool _isLoading = true;
+  // bool _isLoading = true;
 
   @override
   Widget build(BuildContext context) {
@@ -20,36 +20,16 @@ class _WebviewDisplayState extends State<WebviewDisplay> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text(_selectedUrl),
+        title: Text("Getdone"),
         actions: [
           IconButton(
               icon: Icon(Icons.refresh),
               onPressed: () {
-                setState(() {
-                  _isLoading = true;
-                });
+                // setState(() {
+                //   _isLoading = true;
+                // });
                 _inAppWebViewController.loadUrl(url: _selectedUrl);
               }),
-          // IconButton(
-          //     icon: Icon(Icons.clear),
-          //     onPressed: () {
-          //       _inAppWebViewController.stopLoading().then((value) {
-          //         setState(() {
-          //           _isLoading = false;
-          //         });
-          //       });
-          //     }),
-          TextButton(
-              onPressed: () {
-                _inAppWebViewController.clearCache();
-              },
-              child: Text(
-                "CLEAR",
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.white,
-                ),
-              ))
         ],
       ),
       body: Stack(
@@ -103,19 +83,19 @@ class _WebviewDisplayState extends State<WebviewDisplay> {
             // onConsoleMessage: (controller, consoleMessage) {
             //   print(consoleMessage.message);
             // },
-            onLoadStop: (controller, url) {
-              setState(() {
-                _isLoading = false;
-              });
-            },
+            // onLoadStop: (controller, url) {
+            //   setState(() {
+            //     _isLoading = false;
+            //   });
+            // },
           ),
-          if (_isLoading)
-            Center(
-              child: Container(
-                // width: double.maxFinite,
-                child: CircularProgressIndicator(),
-              ),
-            )
+          // if (_isLoading)
+          //   Center(
+          //     child: Container(
+          //       // width: double.maxFinite,
+          //       child: CircularProgressIndicator(),
+          //     ),
+          //   )
         ],
       ),
     );

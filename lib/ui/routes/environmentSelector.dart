@@ -9,18 +9,33 @@ class EnvironmentSelector extends StatefulWidget {
 }
 
 class _EnvironmentSelectorState extends State<EnvironmentSelector> {
-  List<String> _urls = [
-    "https://pro.dev-v2.mrbuilder.io/",
-    "https://pro.qa-v2.mrbuilder.io/",
-    "https://pro.getdone.com/",
+  List<Map<String, String>> _urls = [
+    {
+      "name": "DEV",
+      "url": "https://pro.dev-v2.mrbuilder.io/",
+    },
+    {
+      "name": "QA",
+      "url": "https://pro.qa-v2.mrbuilder.io/",
+    },
+    {
+      "name": "PROD",
+      "url": "https://pro.getdone.com/",
+    },
   ];
-  String _selectedUrl;
+  Map<String, String> _selectedOption;
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedOption = _urls.first;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Webview test"),
+        title: Text("Getdone"),
       ),
       body: Container(
         width: double.maxFinite,
@@ -38,30 +53,33 @@ class _EnvironmentSelectorState extends State<EnvironmentSelector> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: DropdownButton<String>(
-                    value: _selectedUrl,
-                    items: _urls.map((String value) {
+                    value: _selectedOption["name"],
+                    items: _urls.map((Map<String, String> value) {
                       return DropdownMenuItem<String>(
-                        value: value,
-                        child: Text(value),
+                        value: value["name"],
+                        child: Text(value["name"]),
                       );
                     }).toList(),
                     onChanged: (newVal) {
+                      Map<String, String> data =
+                          _urls.firstWhere((e) => e["name"] == newVal);
+                      print("data");
                       setState(() {
-                        _selectedUrl = newVal;
+                        _selectedOption = data;
                       });
                     },
                   ),
                 ),
                 FlatButton(
-                    onPressed: _selectedUrl == null
+                    onPressed: _selectedOption == null
                         ? null
                         : () {
                             Navigator.of(context).pushNamed(
                                 WebviewDisplay.route,
-                                arguments: _selectedUrl);
+                                arguments: _selectedOption["url"]);
                           },
                     child: Container(
-                      child: Text("Launch webview"),
+                      child: Text("Launch app"),
                     ))
               ],
             ),
