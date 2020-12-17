@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:webview_func_test/ui/routes/environmentSelector.dart';
+import 'package:webview_func_test/ui/routes/webviewDisplay.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +16,27 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      // home: MyHomePage(title: 'Flutter Demo Home Page'),
+      initialRoute: EnvironmentSelector.route,
+      onGenerateRoute: (settings) {
+        switch (settings.name) {
+          case EnvironmentSelector.route:
+            return MaterialPageRoute<dynamic>(
+              builder: (context) => EnvironmentSelector(),
+              settings: settings,
+            );
+          case WebviewDisplay.route:
+            return MaterialPageRoute<dynamic>(
+              builder: (context) => WebviewDisplay(),
+              settings: settings,
+            );
+          default:
+            return MaterialPageRoute(
+                builder: (_) => Scaffold(
+                    body: Center(
+                        child: Text('No route defined for ${settings.name}'))));
+        }
+      },
     );
   }
 }
