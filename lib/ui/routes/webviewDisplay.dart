@@ -47,38 +47,15 @@ class _WebviewDisplayState extends State<WebviewDisplay> {
             onWebViewCreated: (InAppWebViewController _controller) async {
               _inAppWebViewController = _controller;
               await _inAppWebViewController.loadUrl(url: _selectedUrl);
-              // _inAppWebViewController.addJavaScriptHandler(
-              //     handlerName: "BookInterface",
-              //     callback: (data) async {
-              // print("message: ${data.first}");
-              // String message = data.first;
-              // print("home executed");
-              // print(message);
-              // print("BookInterface executed, message : $message");
-              // if (message == "Home") {
-              //   await closeServer();
-              //   Navigator.of(context).popUntil((route) => route.isFirst);
-              // } else if (message == "Exit") {
-              //   await closeServer();
-              //   Navigator.of(context).pop();
-              // } else if (message.substring(0, 4) == "url:") {
-              //   String url = message.substring(4, message.length);
-              //   String key =
-              //       Provider.of<UserAuthorization>(context, listen: false)
-              //           .webToken;
-              //   url = "$url?key=$key";
-              //   if (await canLaunch(url)) {
-              //     await launch(url);
-              //   }
-              // } else if (message == "languageChange") {
-              //   String langCode = data[1];
-              //   updateLanguageForBook(
-              //     widget.bookDirectoryName,
-              //     langCode,
-              //     Provider.of<UserAuthorization>(context, listen: false),
-              //   );
-              // }
-              // });
+              _inAppWebViewController.addJavaScriptHandler(
+                  handlerName: "WebviewInterface",
+                  callback: (data) async {
+                    String message = data.first;
+                    print("WebviewInterface message : $message");
+                    if (message == "onIntercomUnreadMessage") {
+                      print(message);
+                    }
+                  });
             },
             // onConsoleMessage: (controller, consoleMessage) {
             //   print(consoleMessage.message);

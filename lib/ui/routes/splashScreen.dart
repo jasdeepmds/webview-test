@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Container(
           width: double.maxFinite,
           child: Image.asset(
-            "asset/images/getdonelogo.png",
+            "asset/images/logo.png",
             height: 100,
             fit: BoxFit.fitHeight,
           ),
